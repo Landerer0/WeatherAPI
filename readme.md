@@ -32,16 +32,30 @@ En este caso, se está solicitando el clima para Santiago, Chile.
 ## Configuración
 
 1. Clona este repositorio:
-
-``` bash
+```
 git clone https://github.com/Landerer0/WeatherAPI.git
 ```
 
 2. Instala las dependencias:
+```
+npm install
+```
 
 3. Configura las variables de entorno en un archivo `.env` en la raíz del proyecto
+```
+API_KEY=tu_clave_de_visualcrossing
+REDIS_USERNAME=tu_usuario_redis
+REDIS_PASSWORD=tu_contraseña_redis
+PORT=8080
+```
 
 4. Inicia el servidor:
+```
+npm start
+```
 
 5. El servidor estará disponible en:
+```
+http://localhost:8080
+```
 
