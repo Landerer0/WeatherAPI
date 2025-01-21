@@ -2,7 +2,7 @@
 
 Esta es una API construida en ExpressJS que permite obtener información meteorológica desde la API de **VisualCrossing**. Proporciona un servicio rápido y eficiente gracias al uso de **Redis** como caché para optimizar las consultas.
 
-## Cómo usar la API
+## Cómo usar
 
 Para realizar una consulta, se debe proporcionar una ubicación mediante un parámetro de consulta
 
@@ -16,6 +16,7 @@ En este caso, se está solicitando el clima para Santiago, Chile.
 ## Limitaciones:
 
 - Cada usuario puede realizar hasta 100 consultas por hora para prevenir una sobrecarga del sistema.
+- Esta limitación se aplica a nivel de IP.
 
 ## Tecnologías utilizadas
 
@@ -28,6 +29,10 @@ En este caso, se está solicitando el clima para Santiago, Chile.
 - **Redis**: Base de datos NoSQL utilizada como sistema de caché para almacenar respuestas temporales, mejorando el rendimiento y reduciendo llamadas innecesarias a la API externa.
 ### Datos meteorológicos:
 - **VisualCrossing API**: Fuente de los datos meteorológicos. Visita [VisualCrossing](https://www.visualcrossing.com).
+
+## Requisitos
+
+Es necesario que tengas configurado e instalado **NodeJS** y **Redis** para ejecutar este proyecto. 
 
 ## Configuración
 
