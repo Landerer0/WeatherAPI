@@ -6,25 +6,32 @@ const axios = require('axios'); // Consultas HTTP
 const rateLimit = require('express-rate-limit'); // Limitar consultas API
 
 const port = process.env.PORT || 3000;
+require('dotenv').config();
+
 app.use(cors());
 
 // Configurar el rate limiter para limitar las solicitudes a 100 por hora
 const limiter = rateLimit({
-    windowMs: 5 * 60 * 1000, // 5 minutos en milisegundos
-    max: 10, // Limita a 10 solicitudes por IP por cada 5 minutos
-    message: 'Demasiadas solicitudes de esta IP, por favor intente nuevamente pasado cinco minutos.',
-    standardHeaders: true, // Retorna el número de solicitudes restantes en los headers de la respuesta
-    legacyHeaders: false,
-  });
+  windowMs: 60 * 60 * 1000, // 1 hora en milisegundos
+  max: 100, // Limita a 100 solicitudes por IP por el tiempo indicado
+  message: (req, res) => {
+    res.status(429).json({
+      error: 'Demasiadas solicitudes',
+      retryAfter: 'Intenta denuevo en: ' + Math.ceil(req.rateLimit.resetTime.getTime() - Date.now() / 1000) + ' segundos',
+    });
+  },
+  standardHeaders: true, // Retorna el número de solicitudes restantes en los headers de la respuesta
+  legacyHeaders: false,
+});
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Bienvenido, accede a /weather para indicar una ciudad')
 })
 
 app.listen(port, () => {
-    console.log(`App running on port ${port}`);
+  console.log(`App running on port ${port}`);
 });
 
 const apiRouter = require('./routes/weather')
 
-app.use('/weather', apiRouter)
+app.use('/weather', limiter, apiRouter)
