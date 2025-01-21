@@ -32,7 +32,7 @@ En este caso, se está solicitando el clima para Santiago, Chile.
 
 ## Requisitos
 
-Es necesario que tengas configurado e instalado **NodeJS** y **Redis** para ejecutar este proyecto. 
+Es necesario que configurar e instalar **NodeJS** y **Redis** para ejecutar este proyecto. 
 
 ## Configuración
 
